@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Ot Policy -->
+
+    <div class="row">
+      <div class="col-12 mt-5">
+        <h6 class="heading">Over Time Policy</h6>
+      </div>
+    </div>
+
+    <div class="card">
+      <form class="row">
+        <div class="col-8 form-group mt-1">
+          <label class="font-sm">Ploicy Title</label>
+          <input class="form-control" type="text" />
+        </div>
+
+        <div class="col-4 form-group mt-1">
+          <label class="font-sm">Over Time Applicable After (Hour)</label>
+          <input class="form-control" type="number" />
+        </div>
+      </form>
+    </div>
+
+    <!-- OT Rate Setup -->
+
+    <div class="card">
+      <form class="row">
+        <div class="col-12">
+          <p class="sub-title">Over Time Rate Setup</p>
+        </div>
+
+        <div class="col-4 form-group mt-4">
+          <label class="font-sm">Rate Type</label>
+          <select class="form-control" id="overTimeRateType">
+            <option value="1" selected disabled>
+              -- Select Rate Type --
+            </option>
+            <option value="flat">Flat</option>
+            <option value="flat">From Basic</option>
+          </select>
+        </div>
+
+        <div class="col-4 form-group mt-4">
+          <div class="form-check" style="padding-top: 35px">
+            <input class="form-check-input" type="checkbox" id="isSlotBased" />
+            <label class="form-check-label font-sm" for="isSlotBased">
+              Is Slot Based
+            </label>
+          </div>
+        </div>
+
+        <div class="col-4 form-group mt-4" id="overTimeSlotRate">
+          <label class="font-sm">Over Time rate (Slot)</label>
+          <input class="form-control" type="text" />
+        </div>
+
+        <div class="col-4 form-group mt-4" id="overTimeNonSlotRate">
+          <label class="font-sm">Over Time rate (Non Slot)</label>
+          <input class="form-control" type="number" />
+        </div>
+      </form>
+
+      <div class="my-4"></div>
+
+      <!-- Weekend -->
+
+      <div class="col-12">
+        <p class="sub-title">
+          <input class="form-check-input" type="checkbox" id="hasWeekendSpecialRate" />
+          <label for="hasWeekendSpecialRate"> &nbsp;&nbsp;&nbsp; Weekend</label>
+        </p>
+      </div>
+
+      <form class="row" id="weekendSection">
+        <div class="col-4 form-group mt-4" id="weekendSpecialRateType">
+          <label class="font-sm">Rate Type</label>
+          <select class="form-control">
+            <option selected disabled>-- Select Rate Type --</option>
+            <option>Flat</option>
+            <option>From Basic</option>
+          </select>
+        </div>
+
+        <div class="col-4 form-group mt-4" id="isSlotBasedWeekendBlock">
+          <div class="form-check" style="padding-top: 35px">
+            <input class="form-check-input" type="checkbox" id="isSlotBasedWeekend" />
+            <label class="form-check-label font-sm" for="isSlotBasedWeekend">
+              Is Slot Based
+            </label>
+          </div>
+        </div>
+
+        <div class="col-4 form-group mt-4" id="weekendSpecialRateSlot">
+          <label class="font-sm">Weekend Special Rate (Slot)</label>
+          <input class="form-control" type="text" />
+        </div>
+
+        <div class="col-4 form-group mt-4" id="weekendSpecialRateNonSlot">
+          <label class="font-sm">Weekend Special Rate (Non Slot)</label>
+          <input class="form-control" type="number" />
+        </div>
+      </form>
+
+      <div class="my-4"></div>
+
+      <!-- Religious Holiday -->
+
+      <div class="col-12">
+        <p class="sub-title">
+          <input class="form-check-input" type="checkbox" id="hasReligiousHoliday" />
+          <label for="hasReligiousHoliday"> &nbsp;&nbsp;&nbsp; Religious Holiday</label>
+        </p>
+      </div>
+
+      <form class="row" id="religiousHolidaySection">
+        <div class="col-4 form-group mt-4" id="religiousHolidayType">
+          <label class="font-sm">Special Rate Type</label>
+          <select class="form-control">
+            <option disabled selected> -- Select Rate Type --</option>
+            <option>Fixed</option>
+            <option>From Basic</option>
+          </select>
+        </div>
+
+        <div class="col-4 form-group mt-4" id="isSlotBasedReligiousHolidayBlock">
+          <div class="form-check" style="padding-top: 35px">
+            <input class="form-check-input" type="checkbox" id="isSlotBasedReligiousHoliday" />
+            <label class="form-check-label font-sm" for="isSlotBasedReligiousHoliday">
+              Is Slot Based
+            </label>
+          </div>
+        </div>
+
+        <div class="col-4 form-group mt-4" id="religiousHolidaySpecialRateSlot">
+          <label class="font-sm">Religious Holiday Special Rate (Slot)</label>
+          <input class="form-control" type="text" />
+        </div>
+
+        <div class="col-4 form-group mt-4" id="religiousHolidaySpecialRateNonSlot">
+          <label class="font-sm">Religious Holiday Special Rate (Non Slot)</label>
+          <input class="form-control" type="number" />
+        </div>
+      </form>
+
+      <div class="my-4"></div>
+
+      <!-- Regular Holiday -->
+
+      <div class="col-12">
+        <p class="sub-title">
+          <input class="form-check-input" type="checkbox" id="hasRegularHoliday" />
+          <label for="hasRegularHoliday"> &nbsp;&nbsp;&nbsp; Regular Holiday</label>
+        </p>
+      </div>
+
+      <form class="row" id="regularHolidaySection">
+        <div class="col-4 form-group mt-4" id="regularHolidayType">
+          <label class="font-sm">Special Rate Type</label>
+          <select class="form-control">
+            <option selected disabled> -- Select Rate Type -- </option>
+            <option>Fixed</option>
+            <option>From Basic</option>
+          </select>
+        </div>
+
+        <div class="col-4 form-group mt-4" id="isSlotBasedRegularHolidayBlock">
+          <div class="form-check" style="padding-top: 35px">
+            <input class="form-check-input" type="checkbox" id="isSlotBasedRegularHoliday" />
+            <label class="form-check-label font-sm" for="isSlotBasedRegularHoliday">
+              Is Slot Based
+            </label>
+          </div>
+        </div>
+
+        <div class="col-4 form-group mt-4" id="regularHolidaySpecialRateSlot">
+          <label class="font-sm">Regular Holiday Special Rate (Slot)</label>
+          <input class="form-control" type="text" />
+        </div>
+
+        <div class="col-4 form-group mt-4" id="regularHolidaySpecialRateNonSlot">
+          <label class="font-sm">Regular Holiday Special Rate (Non Slot)</label>
+          <input class="form-control" type="number" />
+        </div>
+      </form>
+    </div>
+
+    <div class="card">
+
+      <!-- Meal Allowance -->
+
+      <div class="col-12">
+        <p class="sub-title">
+          <input class="form-check-input" type="checkbox" id="hasMealAllowance" />
+          <label for="hasMealAllowance"> &nbsp;&nbsp;&nbsp; Meal Allowance</label>
+        </p>
+      </div>
+
+      <form class="row" id="mealAllowanceSection">
+
+        <div class="col-4 form-group mt-4" id="mealAllowanceType">
+          <label class="font-sm">Allowance Type</label>
+          <select class="form-control">
+            <option selected disabled>-- Select Allowance Type --</option>
+            <option>Per Day</option>
+            <option>Per Month</option>
+          </select>
+        </div>
+
+        <div class="col-4 form-group mt-4" id="mealAllowanceAmount">
+          <label class="font-sm">Allowance Amount</label>
+          <input class="form-control" type="number" />
+        </div>
+
+        <div class="col-4"></div>
+
+        <div class="col-12 row m-0">
+          <div class="col-4 form-group mt-4" id="hasMinMealHourBlock">
+            <div class="form-check" style="padding-top: 35px">
+              <input class="form-check-input" type="checkbox" id="hasMinMealHour" />
+              <label class="form-check-label font-sm" for="hasMinMealHour">
+                Has Min Working Hour
+              </label>
+            </div>
+          </div>
+
+          <div class="col-4 form-group mt-4" id="minMealHour">
+            <label class="font-sm">Min Working Hour</label>
+            <input class="form-control" type="number" />
+          </div>
+        </div>
+
+        <div class="col-12 row m-0">
+          <div class=" col-4 form-group mt-4" id="hasMinMealTimeBlock">
+            <div class="form-check" style="padding-top: 35px">
+              <input class="form-check-input" type="checkbox" id="hasMinMealTime" />
+              <label class="form-check-label font-sm" for="hasMinMealTime">
+                Has Min Working Time
+              </label>
+            </div>
+          </div>
+
+          <div class="col-4 form-group mt-4" id="minMealTime">
+            <label class="font-sm">Min Working Time</label>
+            <input class="form-control" type="time" />
+          </div>
+        </div>
+      </form>
+
+      <div class="my-4"></div>
+
+      <!-- Transport Allowance -->
+
+      <div class="col-12">
+        <p class="sub-title">
+          <input class="form-check-input" type="checkbox" id="hasTransportAllowance" />
+          <label for="hasTransportAllowance"> &nbsp;&nbsp;&nbsp; Tarnsport Allowance</label>
+        </p>
+      </div>
+
+      <form class="row" id="tranportAllowanceSection">
+
+        <div class="col-4 form-group mt-4" id="transportAllowance">
+          <label class="font-sm">Allowance Type</label>
+          <select class="form-control">
+            <option selected disabled> -- Select Allowance Type --</option>
+            <option>Per Day</option>
+            <option>Per Month</option>
+          </select>
+        </div>
+
+        <div class="col-4 form-group mt-4" id="transportAllowanceEligibleGender">
+          <label class="font-sm">Eligible Gender</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option selected disabled>Select Gender</option>
+            <option>All</option>
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+        </div>
+
+
+        <div class="col-12 row m-0">
+          <div class="col-4 form-group mt-4" id="hasMinHourTransportBlock">
+            <div class="form-check" style="padding-top: 35px">
+              <input class="form-check-input" type="checkbox" id="hasMinHourTransport" />
+              <label class="form-check-label font-sm" for="hasMinHourTransport">
+                Has Min Working Hour
+              </label>
+            </div>
+          </div>
+
+          <div class="col-4 form-group mt-4" id="minHourTransport">
+            <label class="font-sm">Min Working Hour </label>
+            <input class="form-control" type="number" />
+          </div>
+        </div>
+
+        <div class="col-12 row m-0">
+          <div class="col-4 form-group mt-4" id="hasMinTimeTransportBlock">
+            <div class="form-check" style="padding-top: 35px">
+              <input class="form-check-input" type="checkbox" id="hasMinTimeTransport" />
+              <label class="form-check-label font-sm" for="hasMinTimeTransport">
+                Has Min Working Time
+              </label>
+            </div>
+          </div>
+
+          <div class="col-4 form-group mt-4" id="minTimeTransport">
+            <label class="font-sm">Min Working Time</label>
+            <input class="form-control" type="time" />
+          </div>
+        </div>
+
+      </form>
+
+      <div class="my-4"></div>
+
+      <!-- Night Shift Allowance -->
+
+      <div class="col-12">
+        <p class="sub-title">
+          <input class="form-check-input" type="checkbox" id="hasNightShiftAllowance" />
+          <label for="hasNightShiftAllowance"> &nbsp;&nbsp;&nbsp; Night Shift Allowance</label>
+        </p>
+      </div>
+
+      <form class="row" id="nightShiftAllowanceSection">
+
+        <div class="col-4 form-group mt-4" id="nightShiftType">
+          <label class="font-sm">Allowance Type</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option selected disabled>Select Allowance Type</option>
+            <option>Per Day</option>
+            <option>Per Month</option>
+          </select>
+        </div>
+
+        <div class="col-4 form-group mt-4" id="nightShiftGender">
+          <label class="font-sm">Eligible Gender</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option selected disabled>Select Gender</option>
+            <option>All</option>
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+        </div>
+
+        <div class="row col-12 m-0">
+          <div class="col-4 form-group mt-4" id="hasMinHourNightBlock">
+            <div class="form-check" style="padding-top: 35px">
+              <input class="form-check-input" type="checkbox" id="hasMinHourNight" />
+              <label class="form-check-label font-sm" for="hasMinHourNight">
+                Has Min Working Hour
+              </label>
+            </div>
+          </div>
+
+          <div class="col-4 form-group mt-4" id="minHourNight">
+            <label class="font-sm">Min Working Hour</label>
+            <input class="form-control" type="number" />
+          </div>
+        </div>
+
+        <div class="row col-12 m-0">
+          <div class="col-4 form-group mt-4" id="hasMinTimeNightBlock">
+            <div class="form-check" style="padding-top: 35px">
+              <input class="form-check-input" type="checkbox" id="hasMinTimeNight" />
+              <label class="form-check-label font-sm" for="hasMinTimeNight">
+                Has Min Working Time
+              </label>
+            </div>
+          </div>
+
+          <div class="col-4 form-group mt-4" id="minTimeNight">
+            <label class="font-sm">Min Working Time</label>
+            <input class="form-control" type="time" />
+          </div>
+        </div>
+      </form>
+
+      <div class="my-4"></div>
+
+      <!-- Weekly Holiday Allowance -->
+
+      <div class="col-12">
+        <p class="sub-title">
+          <input class="form-check-input" type="checkbox" id="hasWeeklyHolidayAllowance" />
+          <label for="hasWeeklyHolidayAllowance"> &nbsp;&nbsp;&nbsp; Weekly Holiday Allowance</label>
+        </p>
+      </div>
+
+      <form class="row" id="weeklyHolidaySection">
+
+        <div class="col-4 form-group mt-4" id="weeklyHolidayType">
+          <label class="font-sm">Allowance Type</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option selected disabled> -- Select Allowance Type -- </option>
+            <option>Per Day</option>
+            <option>Per Month</option>
+          </select>
+        </div>
+
+        <div class="col-4 form-group mt-4" id="holidayEligiblegender">
+          <label class="font-sm">Eligible Gender</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option selected disabled>Select Gender</option>
+            <option>All</option>
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+        </div>
+
+
+        <div class="col-12 row m-0">
+          <div class="col-4 form-group mt-4" id="hasMinHourWeeklyHolidayBlock">
+            <div class="form-check" style="padding-top: 35px">
+              <input class="form-check-input" type="checkbox" id="hasMinHourWeeklyHoliday" />
+              <label class="form-check-label font-sm" for="hasMinHourWeeklyHoliday">
+                Has Min Working Hour
+              </label>
+            </div>
+          </div>
+
+          <div class="col-4 form-group mt-4" id="minHourWeeklyHoliday">
+            <label class="font-sm">Min Working Hour</label>
+            <input class="form-control" type="number" />
+          </div>
+        </div>
+
+        <div class="col-12 row m-0">
+          <div class="col-4 form-group mt-4" id="hasMinTimeWeeklyHolidayBlock">
+            <div class="form-check" style="padding-top: 35px">
+              <input class="form-check-input" type="checkbox" id="hasMinTimeWeeklyHoliday" />
+              <label class="form-check-label font-sm" for="hasMinTimeWeeklyHoliday">
+                Has Min Working Time
+              </label>
+            </div>
+          </div>
+
+          <div class="col-4 form-group mt-4" id="minTimeWeeklyHoliday">
+            <label class="font-sm">Min Working Time</label>
+            <input class="form-control" type="time" />
+          </div>
+        </div>
+      </form>
+
+      <div class="my-4"></div>
+
+      <!-- Religious Holiday Allowance -->
+
+      <div class="col-12">
+        <p class="sub-title">
+          <input class="form-check-input" type="checkbox" id="hasReligiousHolidayAllowance" />
+          <label for="hasReligiousHolidayAllowance"> &nbsp;&nbsp;&nbsp; Religious Holiday Allowance</label>
+        </p>
+      </div>
+
+      <form class="row" id="religiousHolidayAllowanceSection">
+
+        <div class="col-4 form-group mt-4" id="religiousHolidayAllowanceType">
+          <label class="font-sm">Allowance Type</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option selected disabled> -- Select Allowance Type -- </option>
+            <option>Per Day</option>
+            <option>Per Month</option>
+          </select>
+        </div>
+
+        <div class="col-4 form-group mt-4" id="religiousHolidayAllowanceAmount">
+          <label class="font-sm">Allowance Amount</label>
+          <input class="form-control" type="number" />
+        </div>
+
+        <div class="col-12 row m-0">
+          <div class="col-4 form-group mt-4" id="hasMinHourReligiousBlock">
+            <div class="form-check" style="padding-top: 35px">
+              <input class="form-check-input" type="checkbox" id="hasMinHourReligious" />
+              <label class="form-check-label font-sm" for="hasMinHourReligious">
+                Has Min Working Hour
+              </label>
+            </div>
+          </div>
+
+          <div class="col-4 form-group mt-4" id="minHourReligious">
+            <label class="font-sm">Min Working Hour</label>
+            <input class="form-control" type="number" />
+          </div>
+        </div>
+
+        <div class="col-12 row m-0">
+          <div class="col-4 form-group mt-4" id="hasMinTimeReligiousBlock">
+            <div class="form-check" style="padding-top: 35px">
+              <input class="form-check-input" type="checkbox" id="hasMinTimeReligious" />
+              <label class="form-check-label font-sm" for="hasMinTimeReligious">
+                Has Min Working Time
+              </label>
+            </div>
+          </div>
+
+          <div class="col-4 form-group mt-4" id="minTimeReligious">
+            <label class="font-sm">Min Working Time</label>
+            <input class="form-control" type="time" />
+          </div>
+        </div>
+      </form>
+
+      <div class="my-4"></div>
+
+      <!-- Other Holiday Allowance -->
+
+      <div class="col-12">
+        <p class="sub-title">
+          <input class="form-check-input" type="checkbox" id="hasOtherHolidayAllowance" />
+          <label for="hasOtherHolidayAllowance"> &nbsp;&nbsp;&nbsp; Other Holiday Allowance</label>
+        </p>
+      </div>
+
+      <form class="row" id="otherHolidayAllowanceSection">
+
+        <div class="col-4 form-group mt-4" id="otherHolidayAllowanceType">
+          <label class="font-sm">Allowance Type</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option selected disabled> -- Select Allowance Type -- </option>
+            <option>Per Day</option>
+            <option>Per Month</option>
+          </select>
+        </div>
+
+        <div class="col-4 form-group mt-4" id="otherHolidayAllowanceAmount">
+          <label class="font-sm">Allowance Amount</label>
+          <input class="form-control" type="number" />
+        </div>
+
+
+        <div class="col-12 row m-0">
+          <div class="col-4 form-group mt-4" id="hasMinHourOtherHolidayBlock">
+            <div class="form-check" style="padding-top: 35px">
+              <input class="form-check-input" type="checkbox" id="hasMinHourOtherHoliday" />
+              <label class="form-check-label font-sm" for="hasMinHourOtherHoliday">
+                Has Min Working Hour
+              </label>
+            </div>
+          </div>
+
+          <div class="col-4 form-group mt-4" id="minHourOtherHoliday">
+            <label class="font-sm">Min Working Hour</label>
+            <input class="form-control" type="number" />
+          </div>
+        </div>
+
+        <div class="col-12 row m-0">
+          <div class="col-4 form-group mt-4" id="hasMinTimeOtherHolidayBlock">
+            <div class="form-check" style="padding-top: 35px">
+              <input class="form-check-input" type="checkbox" id="hasMinTimeOtherHoliday" />
+              <label class="form-check-label font-sm" for="hasMinTimeOtherHoliday">
+                Has Min Working Time
+              </label>
+            </div>
+          </div>
+
+          <div class="col-4 form-group mt-4" id="minTimeOtherHoliday">
+            <label class="font-sm">Min Working Time </label>
+            <input class="form-control" type="time" />
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Over Time Capping -->
+
+    <div class="card">
+      <form class="row">
+        <div class="col-12">
+          <p class="sub-title">Over Time Capping (Monthly)</p>
+        </div>
+
+        <div class="col-12 row">
+          <div class="col-4 form-group mt-4">
+            <div class="form-check" style="padding-top: 35px">
+              <input class="form-check-input" type="checkbox" id="hasHourlyCapLimit" />
+              <label class="form-check-label font-sm" for="hasHourlyCapLimit">
+                Has Hourly Capping Limit
+              </label>
+            </div>
+          </div>
+
+          <div class="col-4 form-group mt-4" id="maxAlowedHours">
+            <label class="font-sm">Max Allowed Hours</label>
+            <input class="form-control" type="number" />
+          </div>
+        </div>
+
+
+        <div class="col-12 row">
+          <div class="col-4 form-group mt-4">
+            <div class="form-check" style="padding-top: 35px">
+              <input class="form-check-input" type="checkbox" id="hasDailyCapLimit" />
+              <label class="form-check-label font-sm" for="hasDailyCapLimit">
+                Has Daily Capping Limit
+              </label>
+            </div>
+          </div>
+
+          <div class="col-4 form-group mt-4" id="maxAllowedDays">
+            <label class="font-sm">Max Allowed Days</label>
+            <input class="form-control" type="number" />
+          </div>
+        </div>
+
+
+        <div class="col-12 row">
+          <div class="col-4 form-group mt-4">
+            <div class="form-check" style="padding-top: 35px">
+              <input class="form-check-input" type="checkbox" id="hasBillAmountCapLimit" />
+              <label class="form-check-label font-sm" for="hasBillAmountCapLimit">
+                Has Bill Amount Capping Limit
+              </label>
+            </div>
+          </div>
+
+          <div class="col-4 form-group mt-4" id="maxBillAmount">
+            <label class="font-sm">Max Bill Amount</label>
+            <input class="form-control" type="number" />
+          </div>
+        </div>
+
+
+        <div class="col-12 my-4"></div>
+
+
+        <div class="col-12">
+          <p class="sub-title">Over Time Capping (Per Day)</p>
+        </div>
+
+        <div class="col-12 row">
+          <div class="col-4 form-group mt-4">
+            <div class="form-check" style="padding-top: 35px">
+              <input class="form-check-input" type="checkbox" id="hasHourCapLimit" />
+              <label class="form-check-label font-sm" for="hasHourCapLimit">
+                Has Hour Capping Limit
+              </label>
+            </div>
+          </div>
+
+          <div class="col-4 form-group mt-4" id="maxAllowedHours">
+            <label class="font-sm">Max Allowed Hours</label>
+            <input class="form-control" type="number" />
+          </div>
+        </div>
+
+
+        <div class="col-12 row">
+          <div class="col-4 form-group mt-4">
+            <div class="form-check" style="padding-top: 35px">
+              <input class="form-check-input" type="checkbox" id="hasBillAmountCapLimit2" />
+              <label class="form-check-label font-sm" for="hasBillAmountCapLimit2">
+                Has Bill Amount Capping Limit
+              </label>
+            </div>
+          </div>
+
+          <div class="col-4 form-group mt-4" id="maxBillAmount2">
+            <label class="font-sm">Max Bill Amount</label>
+            <input class="form-control" type="number" />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+    crossorigin="anonymous"></script>
+
+  <script src="./index2.js"></script>
+</body>
+
+</html>
